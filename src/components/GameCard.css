@@ -1,0 +1,272 @@
+.game-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, #151e2d 100%);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.game-card:hover::before {
+  transform: scaleX(1);
+}
+
+.game-card.selected {
+  border-color: var(--accent-primary);
+  border-width: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 53, 0.1) 0%,
+    var(--bg-card) 100%
+  );
+  box-shadow: var(--shadow-lg);
+}
+
+.game-card.selected::before {
+  transform: scaleX(1);
+}
+
+.game-card.live {
+  animation: pulse-border 2s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+  0%,
+  100% {
+    border-color: var(--accent-primary);
+  }
+  50% {
+    border-color: var(--accent-secondary);
+  }
+}
+
+/* Drama Header */
+.drama-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.drama-flames {
+  font-size: 1.2rem;
+}
+
+.drama-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.drama-score {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+}
+
+.drama-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.watchlist-btn {
+  background: transparent;
+  border: 2px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.watchlist-btn:hover {
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
+  transform: scale(1.1);
+}
+
+.watchlist-btn.active {
+  background: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+  color: white;
+}
+
+/* Game Status */
+.game-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.status-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.scheduled {
+  background-color: rgba(66, 153, 225, 0.2);
+  color: #4299e1;
+}
+
+.status-badge.in-progress,
+.status-badge.live {
+  background-color: rgba(72, 187, 120, 0.2);
+  color: #48bb78;
+  animation: pulse-status 2s ease-in-out infinite;
+}
+
+@keyframes pulse-status {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.status-badge.final {
+  background-color: rgba(160, 174, 192, 0.2);
+  color: #a0aec0;
+}
+
+.game-time,
+.broadcast {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* Matchup */
+.matchup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.team {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.game-card:hover .team {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.team-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.team-record {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.score {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  min-width: 50px;
+  text-align: right;
+}
+
+.vs-divider {
+  text-align: center;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.25rem 0;
+  opacity: 0.5;
+}
+
+.selected-indicator {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--accent-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding-top: 1rem;
+  border-top: 2px dashed var(--accent-primary);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .game-card {
+    padding: 1rem;
+  }
+
+  .team-name {
+    font-size: 1rem;
+  }
+
+  .score {
+    font-size: 1.5rem;
+  }
+}
